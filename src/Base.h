@@ -4,7 +4,7 @@
 #pragma once
 
 #include <string>
-#include <ddslinker/GetTypeName.h>
+#include <friendappbase/friend/GetTypeName.h>
 
 using namespace std;
 

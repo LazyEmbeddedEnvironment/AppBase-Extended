@@ -22,13 +22,12 @@ add_subdirectory(${CMAKE_BINARY_DIR}/appbase/appbase-src)
 
 
 ##############################################
-#Make sure that custom modules like FindRapidJSON are found
+#Make sure that custom modules like forked appbase are found
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 
 ##############################################
 # Declare dependencies
 find_package(Boost 1.55 REQUIRED COMPONENTS regex)
-find_package(RapidJSON 1.0 REQUIRED MODULE)
 find_package(AppBase REQUIRED)
 
 ##############################################
@@ -36,10 +35,10 @@ find_package(AppBase REQUIRED)
 
 add_library(friendappbase
         src/Input.cpp
-        src/Base.h include/friendappbase/GetTypeName.h)
+        src/Base.h include/friend/appbase/GetTypeName.h)
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
-add_library(FriendAppBase::friendappbase ALIAS friendappbase)
+add_library(Friend::AppBase ALIAS friendappbase)
 
 #Set target properties
 target_include_directories(friendappbase
@@ -50,12 +49,12 @@ target_include_directories(friendappbase
         ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_compile_features(friendappbase PRIVATE cxx_std_17)
+target_compile_features(friendappbase PRIVATE cxx_auto_type)
 target_compile_options(friendappbase PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 target_link_libraries(friendappbase
     PUBLIC
-        Boost::boost RapidJSON::RapidJSON
+        Boost::boost
     PRIVATE
         Boost::regex
         AppBase::appbase
@@ -85,7 +84,7 @@ install(EXPORT friendappbase-targets
   FILE
     FriendAppBaseTargets.cmake
   NAMESPACE
-    FriendAppBase::
+    Friend::
   DESTINATION
     ${INSTALL_CONFIGDIR}
 )
@@ -105,19 +104,14 @@ configure_package_config_file(${CMAKE_CURRENT_LIST_DIR}/cmake/FriendAppBaseConfi
 
 #Install the config, configversion and custom find modules
 install(FILES
-    ${CMAKE_CURRENT_LIST_DIR}/cmake/FindRapidJSON.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/FriendAppBaseConfig.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/FriendAppBaseConfigVersion.cmake
     DESTINATION ${INSTALL_CONFIGDIR}
 )
 
 ##############################################
-## Exporting from the build tree
-configure_file(${CMAKE_CURRENT_LIST_DIR}/cmake/FindRapidJSON.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/FindRapidJSON.cmake
-    COPYONLY)
 
-export(EXPORT friendappbase-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/FriendAppBaseTargets.cmake NAMESPACE FriendAppBase::)
+export(EXPORT friendappbase-targets FILE ${CMAKE_CURRENT_BINARY_DIR}/FriendAppBaseTargets.cmake NAMESPACE Friend::)
 
 #Register package in user's package registry
 export(PACKAGE FriendAppBase)

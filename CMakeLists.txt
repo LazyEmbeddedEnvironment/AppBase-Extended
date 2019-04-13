@@ -3,22 +3,22 @@ project(libfriendappbase VERSION 1.0.0 LANGUAGES CXX)
 
 ###################################################
 # Download and unpack appbase at configure time
-configure_file(${CMAKE_SOURCE_DIR}/cmake/AppBase-CMakeLists.txt.in ${CMAKE_BINARY_DIR}/appbase/appbase-download/CMakeLists.txt)
+configure_file(${CMAKE_SOURCE_DIR}/cmake/AppBase-CMakeLists.txt.in ${CMAKE_BINARY_DIR}/appbase-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/appbase/appbase-download )
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/appbase-download )
 if(result)
     message(FATAL_ERROR "CMake step for appbase failed: ${result}")
 endif()
 execute_process(COMMAND ${CMAKE_COMMAND} --build .
         RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/appbase/appbase-download )
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/appbase-download )
 if(result)
     message(FATAL_ERROR "Build step for appbase failed: ${result}")
 endif()
 
 # Add appbase directly to our build. This defines appbase
-add_subdirectory(${CMAKE_BINARY_DIR}/appbase/appbase-src)
+add_subdirectory(${CMAKE_BINARY_DIR}/appbase-src)
 
 
 ##############################################

@@ -4,10 +4,10 @@ project(appbase-download NONE)
 
 include(ExternalProject)
 ExternalProject_Add(appbase
-  GIT_REPOSITORY    https://github.com/yarp-extensions/appbase.git
+  GIT_REPOSITORY    https://github.com/LazyEmbeddedEnvironment/appbase.git
   GIT_TAG           master
-  SOURCE_DIR        "${CMAKE_BINARY_DIR}/appbase/appbase-src"
-  BINARY_DIR        "${CMAKE_BINARY_DIR}/appbase/appbase-build"
+  SOURCE_DIR        "${CMAKE_BINARY_DIR}/appbase-src"
+  BINARY_DIR        "${CMAKE_BINARY_DIR}/appbase-build"
   CONFIGURE_COMMAND ""
   BUILD_COMMAND     ""
   INSTALL_COMMAND   ""

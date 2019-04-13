@@ -27,15 +27,14 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 
 ##############################################
 # Declare dependencies
-find_package(Boost 1.55 REQUIRED COMPONENTS regex)
 find_package(AppBase REQUIRED)
 
 ##############################################
 # Create target and set properties
 
 add_library(friendappbase
-        src/Input.cpp
-        src/Base.h include/friend/appbase/GetTypeName.h)
+        src/AppBase.cpp
+        )
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
 add_library(Friend::AppBase ALIAS friendappbase)
@@ -53,10 +52,7 @@ target_compile_features(friendappbase PRIVATE cxx_auto_type)
 target_compile_options(friendappbase PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 target_link_libraries(friendappbase
-    PUBLIC
-        Boost::boost
     PRIVATE
-        Boost::regex
         AppBase::appbase
 )
 

@@ -3,7 +3,7 @@ project(libfriendappbase VERSION 1.0.0 LANGUAGES CXX)
 
 ###################################################
 # Download and unpack appbase at configure time
-configure_file(${CMAKE_SOURCE_DIR}/cmake/AppBase-CMakeLists.txt.in ${CMAKE_BINARY_DIR}/appbase-download/CMakeLists.txt)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/AppBase-CMakeLists.txt.in ${CMAKE_BINARY_DIR}/appbase-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
         RESULT_VARIABLE result
         WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/appbase-download )

@@ -3,12 +3,10 @@ include(CMakeFindDependencyMacro)
 
 list(APPEND CMAKE_MODULE_PATH ${FriendAppBase_CMAKE_DIR})
 
-# NOTE Had to use find_package because find_dependency does not support COMPONENTS or MODULE until 3.8.0
-
 list(REMOVE_AT CMAKE_MODULE_PATH -1)
 
-if(NOT TARGET FriendAppBase::FriendAppBase)
+if(NOT TARGET Friend::AppBase)
     include("${FriendAppBase_CMAKE_DIR}/FriendAppBaseTargets.cmake")
 endif()
 
-set(FriendAppBase_LIBRARIES FriendAppBase::FriendAppBase)
+set(FriendAppBase_LIBRARIES Friend::AppBase)

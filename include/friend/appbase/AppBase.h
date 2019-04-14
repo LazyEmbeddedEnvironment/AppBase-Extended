@@ -4,12 +4,13 @@
 
 using namespace std;
 
-namespace bpo = boost::program_options;
-using bpo::options_description;
-using bpo::variables_map;
 
 namespace Friend {
 namespace AppBase {
+
+namespace bpo = boost::program_options;
+using bpo::options_description;
+using bpo::variables_map;
 
 class AppBase : public appbase::plugin<AppBase> {
 public:
@@ -28,7 +29,7 @@ private:
     int _instance;
 };
 
-static void printVariableMap(const boost::program_options::variables_map vm) {
+static void printVariableMap(const bpo::variables_map vm) {
     for (auto it = vm.begin(); it != vm.end(); it++) {
         std::cout << "> " << it->first;
         if (((boost::any)it->second.value()).empty()) {

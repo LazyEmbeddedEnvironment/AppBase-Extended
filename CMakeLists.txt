@@ -18,7 +18,8 @@ if(result)
 endif()
 
 # Add appbase directly to our build. This defines appbase
-add_subdirectory(${CMAKE_BINARY_DIR}/appbase-src)
+add_subdirectory(${CMAKE_BINARY_DIR}/appbase-src ${CMAKE_CURRENT_SOURCE_DIR})
+
 
 
 ##############################################

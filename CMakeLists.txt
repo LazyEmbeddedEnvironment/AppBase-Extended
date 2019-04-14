@@ -48,12 +48,12 @@ target_include_directories(friendappbase
         ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
-target_compile_features(friendappbase PRIVATE cxx_auto_type)
-target_compile_options(friendappbase PRIVATE $<$<CXX_COMPILER_ID:GNU>:-Wall>)
+target_compile_features(friendappbase PUBLIC cxx_auto_type)
+target_compile_options(friendappbase PUBLIC $<$<CXX_COMPILER_ID:GNU>:-Wall>)
 
 target_link_libraries(friendappbase
-    PRIVATE
-        AppBase::appbase
+    PUBLIC
+        AppBase::AppBase
 )
 
 ##############################################

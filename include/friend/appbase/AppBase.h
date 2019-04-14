@@ -1,5 +1,7 @@
 #pragma once
 
+#include <appbase/application.hpp>
+
 using namespace std;
 
 namespace Friend {

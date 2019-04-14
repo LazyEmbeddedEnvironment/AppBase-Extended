@@ -1,16 +1,14 @@
-get_filename_component(DDSLinker_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+get_filename_component(FriendAppBase_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
 include(CMakeFindDependencyMacro)
 
-list(APPEND CMAKE_MODULE_PATH ${DDSLinker_CMAKE_DIR})
+list(APPEND CMAKE_MODULE_PATH ${FriendAppBase_CMAKE_DIR})
 
 # NOTE Had to use find_package because find_dependency does not support COMPONENTS or MODULE until 3.8.0
 
-#find_dependency(Boost 1.55 REQUIRED COMPONENTS regex)
-find_package(Boost 1.55 REQUIRED COMPONENTS regex)
 list(REMOVE_AT CMAKE_MODULE_PATH -1)
 
-if(NOT TARGET DDSLinker::DDSLinker)
-    include("${DDSLinker_CMAKE_DIR}/DDSLinkerTargets.cmake")
+if(NOT TARGET FriendAppBase::FriendAppBase)
+    include("${FriendAppBase_CMAKE_DIR}/FriendAppBaseTargets.cmake")
 endif()
 
-set(DDSLinker_LIBRARIES DDSLinker::DDSLinker)
+set(FriendAppBase_LIBRARIES FriendAppBase::FriendAppBase)

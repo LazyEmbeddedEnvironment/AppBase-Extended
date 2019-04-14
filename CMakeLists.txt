@@ -34,6 +34,7 @@ find_package(AppBase REQUIRED)
 
 add_library(friendappbase
         src/AppBase.cpp
+        AppName.cpp # Generated below
         )
 
 #Add an alias so that library can be used inside the build tree, e.g. when testing
@@ -55,6 +56,11 @@ target_link_libraries(friendappbase
     PUBLIC
         AppBase::AppBase
 )
+
+# Project name injector to source
+set(APPNAME_STRING ${CMAKE_PROJECT_NAME})
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/AppName.cpp.in ${CMAKE_CURRENT_BINARY_DIR}/AppName.cpp @ONLY)
+
 
 ##############################################
 # Installation instructions

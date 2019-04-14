@@ -13,17 +13,16 @@ namespace AppBase {
 
 class AppBase : public appbase::plugin<AppBase> {
 public:
-    // - - - - - - - - - - //
     APPBASE_PLUGIN_REQUIRES();
     virtual void set_program_options( options_description& cli, options_description& cfg ) override;
     void plugin_initialize( const variables_map& options );
     void plugin_startup();
     void plugin_shutdown();
-    // - - - - - - - - - - //
 
     AppBase();
     virtual ~AppBase();
     int getInstance();
+    virtual string getAppName();
 private:
     virtual void setInstance(const int &instance);
     int _instance;

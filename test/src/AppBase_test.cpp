@@ -44,5 +44,7 @@ TEST_F(AppBaseTest, pluginInitializeSetsInstance) {
     bpo::variables_map vm;
     vm.insert(std::make_pair("instance", bpo::variable_value(32,true)));
     mockedBase->plugin_initialize(vm);
-    std::cout << " myinstance is " << mockedBase->getInstance() << "\n";
+}
+TEST_F(AppBaseTest, CMAKE_PROJECT_NAME_toSource) {
+    ASSERT_EQ("libfriendappbase", base->getAppName());
 }

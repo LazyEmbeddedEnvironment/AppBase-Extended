@@ -1,0 +1,7 @@
+//
+// Created by jonb on 4/14/19.
+//
+
+namespace Friend { namespace AppBase {
+   const char* app_name_string = "@APPNAME_STRING@";
+} }
